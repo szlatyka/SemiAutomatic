@@ -1,0 +1,7 @@
+﻿src/.vs
+src/Externals/bin
+src/Externals/obj
+src/SemiAutomatic/bin
+src/SemiAutomatic/obj
+src/WpfTest/bin
+src/WpfTest/obj
