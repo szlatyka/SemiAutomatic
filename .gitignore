@@ -7,3 +7,4 @@ src/WpfTest/bin
 src/WpfTest/obj
 src/Communicators/bin
 src/Communicators/obj
+src/CodeGeneration/obj

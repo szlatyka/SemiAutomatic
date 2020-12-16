@@ -52,7 +52,6 @@
     <Reference Include="UIAutomationTypes" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activity.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +89,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodeGeneration\CodeGeneration.csproj">
+      <Project>{ba416117-190a-4ba6-8de1-4f4700889f4a}</Project>
+      <Name>CodeGeneration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Communicators\Communicators.csproj">
       <Project>{A419484B-7B3F-4CE7-9122-BEB04703BD08}</Project>
       <Name>Communicators</Name>

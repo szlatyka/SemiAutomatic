@@ -12,6 +12,7 @@ using System.Windows.Automation;
 using System.Threading;
 using System.Collections.ObjectModel;
 using Communicators;
+using CodeGeneration;
 
 namespace SemiAutomatic
 {
