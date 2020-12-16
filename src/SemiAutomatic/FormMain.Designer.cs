@@ -31,14 +31,14 @@
             this.btnAttach = new System.Windows.Forms.Button();
             this.cbxWindow = new System.Windows.Forms.ComboBox();
             this.gpxControls = new System.Windows.Forms.GroupBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.dgvActivities = new System.Windows.Forms.DataGridView();
             this.btnAddComment = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbxCommentText = new System.Windows.Forms.TextBox();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupbox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnGenerateAutoIds = new System.Windows.Forms.Button();
             this.gpxControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvActivities)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -80,6 +80,17 @@
             this.gpxControls.TabIndex = 3;
             this.gpxControls.TabStop = false;
             this.gpxControls.Text = "Controls";
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.Location = new System.Drawing.Point(749, 17);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(24, 23);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "R";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // dgvActivities
             // 
@@ -129,17 +140,6 @@
             this.tbxCommentText.Size = new System.Drawing.Size(652, 20);
             this.tbxCommentText.TabIndex = 6;
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRefresh.Location = new System.Drawing.Point(749, 17);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(24, 23);
-            this.btnRefresh.TabIndex = 3;
-            this.btnRefresh.Text = "R";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.groupbox2);
@@ -154,7 +154,7 @@
             // 
             this.groupbox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupbox2.Controls.Add(this.button1);
+            this.groupbox2.Controls.Add(this.btnGenerateAutoIds);
             this.groupbox2.Location = new System.Drawing.Point(749, 3);
             this.groupbox2.Name = "groupbox2";
             this.groupbox2.Size = new System.Drawing.Size(152, 49);
@@ -162,16 +162,16 @@
             this.groupbox2.TabStop = false;
             this.groupbox2.Text = "AutomatinID";
             // 
-            // button1
+            // btnGenerateAutoIds
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.Location = new System.Drawing.Point(6, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Generate";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnGenerateAutoIds.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnGenerateAutoIds.Location = new System.Drawing.Point(6, 19);
+            this.btnGenerateAutoIds.Name = "btnGenerateAutoIds";
+            this.btnGenerateAutoIds.Size = new System.Drawing.Size(137, 23);
+            this.btnGenerateAutoIds.TabIndex = 7;
+            this.btnGenerateAutoIds.Text = "Generate";
+            this.btnGenerateAutoIds.UseVisualStyleBackColor = true;
+            this.btnGenerateAutoIds.Click += new System.EventHandler(this.btnGenerateAutoIds_Click);
             // 
             // FormMain
             // 
@@ -205,7 +205,7 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupbox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGenerateAutoIds;
     }
 }
 

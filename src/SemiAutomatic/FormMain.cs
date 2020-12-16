@@ -24,6 +24,9 @@ namespace SemiAutomatic
         private MasterServiceHandler m_TestService;
         private TestClient m_LocalClient;
 
+        private System.Windows.Forms.Timer m_AutoIdRefreshTimer;
+        private int m_TimerTicksLeft = 10;
+
         public FormMain()
         {
             InitializeComponent();
@@ -177,6 +180,25 @@ namespace SemiAutomatic
 
             this.m_LocalClient = new TestClient();
             this.m_LocalClient.Init();
+
+            this.m_AutoIdRefreshTimer = new System.Windows.Forms.Timer()
+            {
+                Enabled = true,
+                Interval = 1000,
+            };
+            this.m_AutoIdRefreshTimer.Tick += M_AutoIdRefreshTimer_Tick;
+        }
+
+        private void M_AutoIdRefreshTimer_Tick(object sender, EventArgs e)
+        {
+            this.btnGenerateAutoIds.Text = $"Generate ({this.m_TimerTicksLeft})";
+            this.m_TimerTicksLeft--;
+
+            if (this.m_TimerTicksLeft == 0)
+            {
+                this.m_LocalClient.RequestGenerateIds();
+                this.m_TimerTicksLeft = 10;
+            }
         }
 
         private List<AutomationElement> GetAncestorWalk(AutomationElement element)
@@ -253,9 +275,10 @@ namespace SemiAutomatic
             this.cbxWindow.DataSource = WindowHandler.GetOpenWindows().ToList();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnGenerateAutoIds_Click(object sender, EventArgs e)
         {
             this.m_LocalClient.RequestGenerateIds();
+            this.m_TimerTicksLeft = 10;
         }
     }
 }
