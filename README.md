@@ -1,0 +1,2 @@
+# SemiAutomatic
+Test for SAM.
