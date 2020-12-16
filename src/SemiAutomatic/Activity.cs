@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test
+namespace SemiAutomatic
 {
     public class Activity
     {
@@ -35,11 +35,11 @@ namespace Test
             {
                 switch(this.Type)
                 {
-                    case Types.Click: return $"Click {ControlType.ToLower()} \"{ControlDisplayText}\" (WPATH: {WPath})";
+                    case Types.Click:           return $"Click {ControlType.ToLower()} \"{ControlDisplayText}\" (WPATH: {WPath})";
                     case Types.SelectionChange: return $"Select option {Value} of {ControlType.ToLower()} \"{ControlDisplayText}\" (WPATH: {WPath})";
-                    case Types.Toggle: return $"Toggle {ControlType.ToLower()} \"{ControlDisplayText}\" (WPATH: {WPath})";
-                    case Types.ValueChange: return $"Change value of {ControlType.ToLower()} \"{ControlDisplayText}\" to \"{Value}\" (WPATH: {WPath})";
-                    case Types.Comment: return this.Value.ToString();
+                    case Types.Toggle:          return $"Toggle {ControlType.ToLower()} \"{ControlDisplayText}\" (WPATH: {WPath})";
+                    case Types.ValueChange:     return $"Change value of {ControlType.ToLower()} \"{ControlDisplayText}\" to \"{Value}\" (WPATH: {WPath})";
+                    case Types.Comment:         return this.Value.ToString();
                 }
                 return null;
             }

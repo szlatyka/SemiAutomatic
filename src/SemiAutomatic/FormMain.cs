@@ -11,14 +11,18 @@ using System.Windows.Forms;
 using System.Windows.Automation;
 using System.Threading;
 using System.Collections.ObjectModel;
+using Communicators;
 
-namespace Test
+namespace SemiAutomatic
 {
     public partial class FormMain : Form
     {
         private BindingSource m_Binder = new BindingSource();
         private ObservableCollection<Activity> m_Activities = new ObservableCollection<Activity>();
         private AutomationElement m_MainWindow = null;
+
+        private MasterServiceHandler m_TestService;
+        private TestClient m_LocalClient;
 
         public FormMain()
         {
@@ -167,6 +171,12 @@ namespace Test
             this.cbxWindow.DataSource = WindowHandler.GetOpenWindows().ToList();
             this.cbxWindow.ValueMember = "Value";
             this.cbxWindow.DisplayMember = "Value";
+
+            this.m_TestService = new MasterServiceHandler();
+            this.m_TestService.Start();
+
+            this.m_LocalClient = new TestClient();
+            this.m_LocalClient.Init();
         }
 
         private List<AutomationElement> GetAncestorWalk(AutomationElement element)
@@ -236,6 +246,16 @@ namespace Test
                 Type = Activity.Types.Comment,
                 Value = this.tbxCommentText.Text
             });
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            this.cbxWindow.DataSource = WindowHandler.GetOpenWindows().ToList();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.m_LocalClient.RequestGenerateIds();
         }
     }
 }

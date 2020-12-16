@@ -1,23 +1,23 @@
-﻿using System;
+﻿using AutomationIDGeneratorWCFServerInterfaces;
+using Externals;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-using AutomationIDGeneratorWCFServerInterfaces;
-using System.ServiceModel;
-using System.Diagnostics;
 
-namespace Externals
+namespace Communicators
 {
-    public class SamWcfTestClient : IAutomationIDGeneratorDuplexCallback
+    public class TestClient : IAutomationIDGeneratorDuplexCallback
     {
         private IAutomationIDGeneratorServiceContract m_Service;
 
         public void Init()
         {
             InstanceContext context = new InstanceContext(this);
-            DuplexChannelFactory<IAutomationIDGeneratorServiceContract> factory = new DuplexChannelFactory<IAutomationIDGeneratorServiceContract>(context, new WSDualHttpBinding(), new EndpointAddress("http://localhost:8888/AutomationIDGenerator"));
+            DuplexChannelFactory<IAutomationIDGeneratorServiceContract> factory = new DuplexChannelFactory<IAutomationIDGeneratorServiceContract>(context, new WSDualHttpBinding(), new EndpointAddress(Constants.TEST_AUTOMATION_SERIVICE_ENDPOINT));
 
             this.m_Service = factory.CreateChannel();
             this.m_Service.Init(ClientType.TestSystem);

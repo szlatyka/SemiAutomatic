@@ -8,6 +8,7 @@ using System.ServiceModel;
 
 namespace AutomationIDGeneratorWCFServerInterfaces
 {
+    [ServiceContract(SessionMode = SessionMode.Required, CallbackContract = typeof(IAutomationIDGeneratorDuplexCallback))]
     public interface IAutomationIDGeneratorServiceContract
     {
         [OperationContract(IsOneWay = true)]

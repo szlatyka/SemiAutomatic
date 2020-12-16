@@ -1,4 +1,4 @@
-﻿namespace Test
+﻿namespace SemiAutomatic
 {
     partial class FormMain
     {
@@ -35,9 +35,15 @@
             this.btnAddComment = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbxCommentText = new System.Windows.Forms.TextBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.groupbox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.gpxControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvActivities)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.groupbox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAttach
@@ -59,11 +65,12 @@
             this.cbxWindow.FormattingEnabled = true;
             this.cbxWindow.Location = new System.Drawing.Point(6, 19);
             this.cbxWindow.Name = "cbxWindow";
-            this.cbxWindow.Size = new System.Drawing.Size(767, 21);
+            this.cbxWindow.Size = new System.Drawing.Size(737, 21);
             this.cbxWindow.TabIndex = 2;
             // 
             // gpxControls
             // 
+            this.gpxControls.Controls.Add(this.btnRefresh);
             this.gpxControls.Controls.Add(this.cbxWindow);
             this.gpxControls.Controls.Add(this.btnAttach);
             this.gpxControls.Dock = System.Windows.Forms.DockStyle.Top;
@@ -85,16 +92,15 @@
             this.dgvActivities.Name = "dgvActivities";
             this.dgvActivities.RowHeadersVisible = false;
             this.dgvActivities.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvActivities.Size = new System.Drawing.Size(904, 139);
+            this.dgvActivities.Size = new System.Drawing.Size(904, 186);
             this.dgvActivities.TabIndex = 4;
             // 
             // btnAddComment
             // 
-            this.btnAddComment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddComment.Location = new System.Drawing.Point(779, 17);
+            this.btnAddComment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddComment.Location = new System.Drawing.Point(664, 17);
             this.btnAddComment.Name = "btnAddComment";
-            this.btnAddComment.Size = new System.Drawing.Size(113, 23);
+            this.btnAddComment.Size = new System.Drawing.Size(70, 23);
             this.btnAddComment.TabIndex = 5;
             this.btnAddComment.Text = "Add Comment";
             this.btnAddComment.UseVisualStyleBackColor = true;
@@ -102,12 +108,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.tbxCommentText);
             this.groupBox1.Controls.Add(this.btnAddComment);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 191);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(904, 47);
+            this.groupBox1.Size = new System.Drawing.Size(740, 52);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Comment";
@@ -118,16 +126,60 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxCommentText.Location = new System.Drawing.Point(6, 19);
             this.tbxCommentText.Name = "tbxCommentText";
-            this.tbxCommentText.Size = new System.Drawing.Size(767, 20);
+            this.tbxCommentText.Size = new System.Drawing.Size(652, 20);
             this.tbxCommentText.TabIndex = 6;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.Location = new System.Drawing.Point(749, 17);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(24, 23);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "R";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.groupbox2);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 183);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(904, 55);
+            this.panel1.TabIndex = 7;
+            // 
+            // groupbox2
+            // 
+            this.groupbox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupbox2.Controls.Add(this.button1);
+            this.groupbox2.Location = new System.Drawing.Point(749, 3);
+            this.groupbox2.Name = "groupbox2";
+            this.groupbox2.Size = new System.Drawing.Size(152, 49);
+            this.groupbox2.TabIndex = 7;
+            this.groupbox2.TabStop = false;
+            this.groupbox2.Text = "AutomatinID";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.button1.Location = new System.Drawing.Point(6, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(137, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Generate";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 238);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvActivities);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gpxControls);
             this.Name = "FormMain";
             this.Text = "UiHooker";
@@ -136,6 +188,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvActivities)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.groupbox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -148,6 +202,10 @@
         private System.Windows.Forms.Button btnAddComment;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox tbxCommentText;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox groupbox2;
+        private System.Windows.Forms.Button button1;
     }
 }
 

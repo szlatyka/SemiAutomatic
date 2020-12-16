@@ -19,7 +19,7 @@ namespace AutomationIDGeneratorWCFServerInterfaces
 
     public enum ClientType
     {
-        Server = 1,
+        Server = 0,
         TestSystem = 1,
         SAM = 2,
     }

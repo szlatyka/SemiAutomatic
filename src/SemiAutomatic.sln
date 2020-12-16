@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30413.136
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1209
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemiAutomatic", "SemiAutomatic\SemiAutomatic.csproj", "{7CE5E704-6174-467C-B9AB-10F26A066FF6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTest", "WpfTest\WpfTest.csproj", "{F562F88B-876A-4C01-AB88-545469432A51}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Externals", "Externals\Externals.csproj", "{CBA016A1-FCAA-4F13-9B21-BEF8DF7AA341}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Communicators", "Communicators\Communicators.csproj", "{A419484B-7B3F-4CE7-9122-BEB04703BD08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{CBA016A1-FCAA-4F13-9B21-BEF8DF7AA341}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBA016A1-FCAA-4F13-9B21-BEF8DF7AA341}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBA016A1-FCAA-4F13-9B21-BEF8DF7AA341}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A419484B-7B3F-4CE7-9122-BEB04703BD08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A419484B-7B3F-4CE7-9122-BEB04703BD08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A419484B-7B3F-4CE7-9122-BEB04703BD08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A419484B-7B3F-4CE7-9122-BEB04703BD08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
