@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Collections.ObjectModel;
 using SemiAuto.Configurations;
 using System.Collections.Specialized;
+using SemiAuto.Data;
 
 namespace SemiAuto.SettingsViews
 {

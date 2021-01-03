@@ -52,9 +52,7 @@
     <Reference Include="UIAutomationTypes" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configurations\Alias.cs" />
     <Compile Include="Configurations\Configuration.cs" />
-    <Compile Include="Configurations\Macro.cs" />
     <Compile Include="FormAddMacro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +166,10 @@
     <ProjectReference Include="..\Communicators\SemiAuto.Communicators.csproj">
       <Project>{A419484B-7B3F-4CE7-9122-BEB04703BD08}</Project>
       <Name>SemiAuto.Communicators</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SemiAuto.Data\SemiAuto.Data.csproj">
+      <Project>{723b02f4-e721-4c77-990b-efa4c35a8b0d}</Project>
+      <Name>SemiAuto.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

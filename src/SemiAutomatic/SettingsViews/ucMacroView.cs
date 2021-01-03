@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SemiAuto.Configurations;
+using SemiAuto.Data;
 
 namespace SemiAuto.SettingsViews
 {

@@ -1,5 +1,4 @@
-﻿using CodeGeneration;
-using SemiAuto.Configurations;
+﻿using SemiAuto.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

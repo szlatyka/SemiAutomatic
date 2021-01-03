@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SemiAuto.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,12 @@ namespace SemiAuto.CodeGeneration
                 {
                     case Activity.Types.Click:
                     case Activity.Types.Toggle:
-                        builder.AppendLine($"new {activity.ControlType}(\"{activity.WPath}\").{activity.Type}()");
+                        string id = activity.WPath;
+                        if (this.Aliases.ContainsKey(activity.WPath))
+                        {
+                            id = this.Aliases[activity.WPath];
+                        }
+                        builder.AppendLine($"new {activity.ControlType}(\"{id}\").{activity.Type}()");
                         break;
                     case Activity.Types.Comment:
                         builder.AppendLine($"//{activity.Value}");

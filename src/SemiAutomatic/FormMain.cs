@@ -11,10 +11,11 @@ using System.Windows.Forms;
 using System.Windows.Automation;
 using System.Threading;
 using System.Collections.ObjectModel;
-using Communicators;
-using CodeGeneration;
 using SemiAuto.Configurations;
 using System.IO;
+using SemiAuto.Data;
+using SemiAuto.Communicators;
+using SemiAuto.CodeGeneration;
 
 namespace SemiAuto
 {

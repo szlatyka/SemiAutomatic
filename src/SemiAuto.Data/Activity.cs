@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SemiAuto.CodeGeneration
+namespace SemiAuto.Data
 {
     [Serializable]
     public class Activity
@@ -34,12 +34,13 @@ namespace SemiAuto.CodeGeneration
         {
             get
             {
-                switch(this.Type)
+                string optionalPath = String.IsNullOrEmpty(ControlDisplayText) ? $"(WPATH: {WPath})" : "";
+                switch (this.Type)
                 {
-                    case Types.Click:           return $"Click {ControlType.ToLower()} \"{ControlDisplayText}\" (WPATH: {WPath})";
-                    case Types.SelectionChange: return $"Select option {Value} of {ControlType.ToLower()} \"{ControlDisplayText}\" (WPATH: {WPath})";
-                    case Types.Toggle:          return $"Toggle {ControlType.ToLower()} \"{ControlDisplayText}\" (WPATH: {WPath})";
-                    case Types.ValueChange:     return $"Change value of {ControlType.ToLower()} \"{ControlDisplayText}\" to \"{Value}\" (WPATH: {WPath})";
+                    case Types.Click:           return $"Click {ControlType.ToLower()} \"{ControlDisplayText}\" {optionalPath}";
+                    case Types.SelectionChange: return $"Select option {Value} of {ControlType.ToLower()} \"{ControlDisplayText}\" {optionalPath}";
+                    case Types.Toggle:          return $"Toggle {ControlType.ToLower()} \"{ControlDisplayText}\" {optionalPath}";
+                    case Types.ValueChange:     return $"Change value of {ControlType.ToLower()} \"{ControlDisplayText}\" to \"{Value}\" {optionalPath}";
                     case Types.Comment:         return this.Value.ToString();
                 }
                 return null;

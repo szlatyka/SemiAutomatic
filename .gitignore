@@ -9,3 +9,4 @@ src/Communicators/bin
 src/Communicators/obj
 src/CodeGeneration/obj
 src/CodeGeneration/bin
+src/SemiAuto.Data/obj

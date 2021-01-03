@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SemiAuto.Configurations
+namespace SemiAuto.Data
 {
     [Serializable]
     public class Alias
