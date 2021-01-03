@@ -324,7 +324,11 @@ namespace SemiAuto
             IGenerator gen = null;
             if(this.Configuration.Generator.Contains("C#")) //fucking stupid but works for now
             {
-                gen = new SemiTestGenerator();
+                gen = new SemiTestGenerator()
+                {
+                    Aliases = this.Configuration.Aliases,
+                    Macros = this.Configuration.Macros,
+                };
             }
             else
             {

@@ -16,7 +16,8 @@ namespace SemiAuto.Data
             ValueChange,
             SelectionChange,
             Toggle,
-            Comment
+            Comment,
+            Macro,
         }
 
         [Browsable(false)]
