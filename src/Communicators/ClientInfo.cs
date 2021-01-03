@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Communicators
+namespace SemiAuto.Communicators
 {
     public class ClientInfo
     {

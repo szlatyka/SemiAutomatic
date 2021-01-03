@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using HWND = System.IntPtr;
 
-namespace SemiAutomatic
+namespace SemiAuto
 {
     public class NATIVE_User32_dll
     {

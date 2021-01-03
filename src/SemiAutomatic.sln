@@ -3,15 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemiAutomatic", "SemiAutomatic\SemiAutomatic.csproj", "{7CE5E704-6174-467C-B9AB-10F26A066FF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemiAuto", "SemiAutomatic\SemiAuto.csproj", "{7CE5E704-6174-467C-B9AB-10F26A066FF6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTest", "WpfTest\WpfTest.csproj", "{F562F88B-876A-4C01-AB88-545469432A51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Externals", "Externals\Externals.csproj", "{CBA016A1-FCAA-4F13-9B21-BEF8DF7AA341}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemiAuto.Externals", "Externals\SemiAuto.Externals.csproj", "{CBA016A1-FCAA-4F13-9B21-BEF8DF7AA341}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Communicators", "Communicators\Communicators.csproj", "{A419484B-7B3F-4CE7-9122-BEB04703BD08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemiAuto.Communicators", "Communicators\SemiAuto.Communicators.csproj", "{A419484B-7B3F-4CE7-9122-BEB04703BD08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGeneration", "CodeGeneration\CodeGeneration.csproj", "{BA416117-190A-4BA6-8DE1-4F4700889F4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemiAuto.CodeGeneration", "CodeGeneration\SemiAuto.CodeGeneration.csproj", "{BA416117-190A-4BA6-8DE1-4F4700889F4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Executables", "Executables", "{9C7C7D2B-5D23-4B06-96E8-7A135CCC3FC9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{2892F40A-A273-43F7-933F-1372E8FD62CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests and skeletons", "Tests and skeletons", "{320AF34C-0ADC-4A74-96C2-D988A1EDDB62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +48,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7CE5E704-6174-467C-B9AB-10F26A066FF6} = {9C7C7D2B-5D23-4B06-96E8-7A135CCC3FC9}
+		{F562F88B-876A-4C01-AB88-545469432A51} = {320AF34C-0ADC-4A74-96C2-D988A1EDDB62}
+		{CBA016A1-FCAA-4F13-9B21-BEF8DF7AA341} = {2892F40A-A273-43F7-933F-1372E8FD62CD}
+		{A419484B-7B3F-4CE7-9122-BEB04703BD08} = {2892F40A-A273-43F7-933F-1372E8FD62CD}
+		{BA416117-190A-4BA6-8DE1-4F4700889F4A} = {2892F40A-A273-43F7-933F-1372E8FD62CD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C14A41D1-20B2-4EE0-B261-12619A33F17A}

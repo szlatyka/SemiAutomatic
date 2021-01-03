@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7CE5E704-6174-467C-B9AB-10F26A066FF6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SemiAutomatic</RootNamespace>
+    <RootNamespace>SemiAuto</RootNamespace>
     <AssemblyName>SemiAutomatic</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -52,18 +52,78 @@
     <Reference Include="UIAutomationTypes" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\Alias.cs" />
+    <Compile Include="Configurations\Configuration.cs" />
+    <Compile Include="Configurations\Macro.cs" />
+    <Compile Include="FormAddMacro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddMacro.Designer.cs">
+      <DependentUpon>FormAddMacro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOutput.Designer.cs">
+      <DependentUpon>FormOutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListSync.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="NATIVE_User32_dll.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsViews\ucAlias.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SettingsViews\ucAlias.Designer.cs">
+      <DependentUpon>ucAlias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsViews\ucGeneral.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SettingsViews\ucGeneral.Designer.cs">
+      <DependentUpon>ucGeneral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsViews\ucMacros.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SettingsViews\ucMacros.Designer.cs">
+      <DependentUpon>ucMacros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsViews\ucMacroView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SettingsViews\ucMacroView.Designer.cs">
+      <DependentUpon>ucMacroView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsViews\ucSettingsBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="WindowHandler.cs" />
+    <EmbeddedResource Include="FormAddMacro.resx">
+      <DependentUpon>FormAddMacro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOutput.resx">
+      <DependentUpon>FormOutput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -75,6 +135,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SettingsViews\ucAlias.resx">
+      <DependentUpon>ucAlias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsViews\ucGeneral.resx">
+      <DependentUpon>ucGeneral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsViews\ucMacros.resx">
+      <DependentUpon>ucMacros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsViews\ucMacroView.resx">
+      <DependentUpon>ucMacroView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -89,13 +161,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeGeneration\CodeGeneration.csproj">
+    <ProjectReference Include="..\CodeGeneration\SemiAuto.CodeGeneration.csproj">
       <Project>{ba416117-190a-4ba6-8de1-4f4700889f4a}</Project>
-      <Name>CodeGeneration</Name>
+      <Name>SemiAuto.CodeGeneration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Communicators\Communicators.csproj">
+    <ProjectReference Include="..\Communicators\SemiAuto.Communicators.csproj">
       <Project>{A419484B-7B3F-4CE7-9122-BEB04703BD08}</Project>
-      <Name>Communicators</Name>
+      <Name>SemiAuto.Communicators</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

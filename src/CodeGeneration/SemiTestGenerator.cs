@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeGeneration
+namespace SemiAuto.CodeGeneration
 {
     public class SemiTestGenerator : IGenerator
     {
@@ -27,6 +27,8 @@ namespace CodeGeneration
                         break;
                 }
             }
+
+            return null;
         }
     }
 }

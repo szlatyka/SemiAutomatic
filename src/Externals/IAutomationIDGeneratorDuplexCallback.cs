@@ -16,19 +16,4 @@ namespace AutomationIDGeneratorWCFServerInterfaces
         [OperationContract(IsOneWay = true)]
         void ReceiveMessage(ClientType sender, MessageType message, string comment);
     }
-
-    public enum ClientType
-    {
-        Server = 0,
-        TestSystem = 1,
-        SAM = 2,
-    }
-
-    public enum MessageType
-    {
-        GenerateAutomationID = 0,
-        SystemInitCompleted = 1,
-        DisconnectRequest = 2,
-        TextMessage = 3
-    }
 }

@@ -1,4 +1,4 @@
-﻿namespace SemiAutomatic
+﻿namespace SemiAuto
 {
     partial class FormMain
     {
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnAttach = new System.Windows.Forms.Button();
             this.cbxWindow = new System.Windows.Forms.ComboBox();
             this.gpxControls = new System.Windows.Forms.GroupBox();
@@ -39,11 +40,21 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupbox2 = new System.Windows.Forms.GroupBox();
             this.btnGenerateAutoIds = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.createMacroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gpxControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvActivities)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupbox2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAttach
@@ -74,7 +85,7 @@
             this.gpxControls.Controls.Add(this.cbxWindow);
             this.gpxControls.Controls.Add(this.btnAttach);
             this.gpxControls.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gpxControls.Location = new System.Drawing.Point(0, 0);
+            this.gpxControls.Location = new System.Drawing.Point(0, 24);
             this.gpxControls.Name = "gpxControls";
             this.gpxControls.Size = new System.Drawing.Size(904, 52);
             this.gpxControls.TabIndex = 3;
@@ -96,14 +107,16 @@
             // 
             this.dgvActivities.AllowUserToAddRows = false;
             this.dgvActivities.AllowUserToResizeRows = false;
+            this.dgvActivities.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvActivities.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvActivities.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvActivities.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvActivities.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvActivities.Location = new System.Drawing.Point(0, 52);
+            this.dgvActivities.Location = new System.Drawing.Point(0, 76);
             this.dgvActivities.Name = "dgvActivities";
             this.dgvActivities.RowHeadersVisible = false;
             this.dgvActivities.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvActivities.Size = new System.Drawing.Size(904, 186);
+            this.dgvActivities.Size = new System.Drawing.Size(904, 358);
             this.dgvActivities.TabIndex = 4;
             // 
             // btnAddComment
@@ -145,7 +158,7 @@
             this.panel1.Controls.Add(this.groupbox2);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 183);
+            this.panel1.Location = new System.Drawing.Point(0, 379);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(904, 55);
             this.panel1.TabIndex = 7;
@@ -173,14 +186,78 @@
             this.btnGenerateAutoIds.UseVisualStyleBackColor = true;
             this.btnGenerateAutoIds.Click += new System.EventHandler(this.btnGenerateAutoIds_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.toolsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(904, 24);
+            this.menuStrip1.TabIndex = 8;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.generateToolStripMenuItem,
+            this.settingsToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // generateToolStripMenuItem
+            // 
+            this.generateToolStripMenuItem.Name = "generateToolStripMenuItem";
+            this.generateToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.generateToolStripMenuItem.Text = "Generate";
+            this.generateToolStripMenuItem.Click += new System.EventHandler(this.generateToolStripMenuItem_Click);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createMacroToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            // 
+            // createMacroToolStripMenuItem
+            // 
+            this.createMacroToolStripMenuItem.Name = "createMacroToolStripMenuItem";
+            this.createMacroToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createMacroToolStripMenuItem.Text = "Create macro...";
+            this.createMacroToolStripMenuItem.Click += new System.EventHandler(this.createMacroToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(904, 238);
+            this.ClientSize = new System.Drawing.Size(904, 434);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvActivities);
             this.Controls.Add(this.gpxControls);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
             this.Text = "UiHooker";
             this.Load += new System.EventHandler(this.OnLoad);
@@ -190,7 +267,11 @@
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.groupbox2.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -206,6 +287,14 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupbox2;
         private System.Windows.Forms.Button btnGenerateAutoIds;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem createMacroToolStripMenuItem;
     }
 }
 

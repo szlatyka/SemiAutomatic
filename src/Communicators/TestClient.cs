@@ -8,7 +8,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Communicators
+namespace SemiAuto.Communicators
 {
     public class TestClient : IAutomationIDGeneratorDuplexCallback
     {

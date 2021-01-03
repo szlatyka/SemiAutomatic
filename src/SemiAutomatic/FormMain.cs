@@ -13,11 +13,15 @@ using System.Threading;
 using System.Collections.ObjectModel;
 using Communicators;
 using CodeGeneration;
+using SemiAuto.Configurations;
+using System.IO;
 
-namespace SemiAutomatic
+namespace SemiAuto
 {
     public partial class FormMain : Form
     {
+        public Configuration Configuration { get; set; }
+
         private BindingSource m_Binder = new BindingSource();
         private ObservableCollection<Activity> m_Activities = new ObservableCollection<Activity>();
         private AutomationElement m_MainWindow = null;
@@ -34,57 +38,12 @@ namespace SemiAutomatic
             this.m_Binder.DataSource = this.m_Activities;
             this.dgvActivities.DataSource = this.m_Binder;
             this.m_Activities.CollectionChanged += M_Activities_CollectionChanged;
-        }
 
-        private void M_Activities_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            this.Invoke(new Action(() => this.m_Binder.ResetBindings(false)));
-        }
-
-        private void btnAttach_Click(object sender, EventArgs e)
-        {
-            try
+            if(!File.Exists(Configuration.DEFAULT_FILE))
             {
-                AutomationElement aeDesktop = null;
-                aeDesktop = AutomationElement.RootElement;
-                if (aeDesktop == null)
-                {
-                    throw new Exception("Unable to get Desktop");
-                }
-
-                this.m_MainWindow = null;
-                int numWaits = 0;
-                do
-                {
-                    this.m_MainWindow = aeDesktop.FindFirst(TreeScope.Children, new PropertyCondition(AutomationElement.NameProperty, this.cbxWindow.SelectedValue));
-                    numWaits++;
-                    Thread.Sleep(200);
-                }
-                while (this.m_MainWindow == null && numWaits < 50);
-
-                if (this.m_MainWindow == null)
-                {
-                    throw new Exception("Failed to find window");
-                }
-
-
-                AutomationProperty[] captureProperties = new AutomationProperty[]
-                {
-                    ValuePattern.ValueProperty,
-                    TogglePattern.ToggleStateProperty,
-                    SelectionPattern.SelectionProperty,
-                };
-
-                Automation.AddAutomationPropertyChangedEventHandler(this.m_MainWindow, TreeScope.Subtree, this.OnPropertyChanged, captureProperties);
-                Automation.AddAutomationEventHandler(SelectionPattern.InvalidatedEvent, this.m_MainWindow, TreeScope.Subtree, this.OnEvent);
-                Automation.AddAutomationEventHandler(InvokePattern.InvokedEvent, this.m_MainWindow, TreeScope.Subtree, this.OnEvent);
-
-                this.Text += $" (now attached to: ({this.cbxWindow.SelectedValue})";
+                new Configuration().Save(Configuration.DEFAULT_FILE);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            this.Configuration = Configuration.Load(Configuration.DEFAULT_FILE);
         }
 
         private void OnPropertyChanged(object src, AutomationPropertyChangedEventArgs e)
@@ -96,9 +55,6 @@ namespace SemiAutomatic
             string text = this.GetText(el);
             string name = el.Current.Name;
 
-            //string name = (src as AutomationElement).Current.Name;
-
-            string msg = "";
             if (e.Property == ValuePattern.ValueProperty)
             {
                 Activity act = new Activity()
@@ -110,9 +66,6 @@ namespace SemiAutomatic
                     Value = e.NewValue
                 };
                 this.m_Activities.Add(act);
-
-
-                msg = $"\"Change value {itemType} \"{text}\" (AID: {id}) (WPATH: n/a)\r\n";
             }
             else if(e.Property == TogglePattern.ToggleStateProperty)
             {
@@ -125,12 +78,26 @@ namespace SemiAutomatic
                     Value = e.NewValue
                 };
                 this.m_Activities.Add(act);
-
-
-                msg = $"\"Toggle {itemType} \"{text}\" (AID: {id}) (WPATH: n/a)\r\n";
             }
+            else if(e.Property == SelectionItemPattern.IsSelectedProperty)
+            {
+                object pattern = null;
+                el.TryGetCurrentPattern(SelectionItemPattern.Pattern, out pattern);
 
-            //this.Invoke(new Action(() => this.textBox1.AppendText(msg)));
+                SelectionItemPattern typedPattern = pattern as SelectionItemPattern;
+                bool selected = typedPattern.Current.IsSelected;
+                AutomationElement container = typedPattern.Current.SelectionContainer;
+
+                Activity act = new Activity()
+                {
+                    Type = Activity.Types.SelectionChange,
+                    ControlDisplayText = this.GetText(container),
+                    ControlType = itemType,
+                    WPath = this.GetWPath(this.GetAncestorWalk(el)),
+                    Value = e.NewValue
+                };
+
+            }
         }
 
         private void OnEvent(object src, AutomationEventArgs e)
@@ -140,7 +107,6 @@ namespace SemiAutomatic
             string itemType = el.Current.ClassName;
             string id  = el.Current.AutomationId;
             string text = this.GetText((src as AutomationElement));
-            string msg = "";
 
             if (e.EventId == InvokePattern.InvokedEvent)
             {
@@ -152,8 +118,6 @@ namespace SemiAutomatic
                     WPath = this.GetWPath(this.GetAncestorWalk(el))
                 };
                 this.m_Activities.Add(act);
-
-                msg = $"Click {itemType} \"{text}\" (AID: {id}) (WPATH: n/a)\r\n";
             }
             else if(e.EventId == SelectionPattern.InvalidatedEvent)
             {
@@ -165,8 +129,6 @@ namespace SemiAutomatic
                     WPath = this.GetWPath(this.GetAncestorWalk(el))
                 };
                 this.m_Activities.Add(act);
-
-                msg = $"\"Change selection {itemType} \"{text}\" (AID: {id}) (WPATH: n/a)\r\n";
             }
         }
 
@@ -190,17 +152,7 @@ namespace SemiAutomatic
             this.m_AutoIdRefreshTimer.Tick += M_AutoIdRefreshTimer_Tick;
         }
 
-        private void M_AutoIdRefreshTimer_Tick(object sender, EventArgs e)
-        {
-            this.btnGenerateAutoIds.Text = $"Generate ({this.m_TimerTicksLeft})";
-            this.m_TimerTicksLeft--;
-
-            if (this.m_TimerTicksLeft == 0)
-            {
-                this.m_LocalClient.RequestGenerateIds();
-                this.m_TimerTicksLeft = 10;
-            }
-        }
+        #region Helpers methods
 
         private List<AutomationElement> GetAncestorWalk(AutomationElement element)
         {
@@ -262,6 +214,80 @@ namespace SemiAutomatic
             }
         }
 
+        public void AttachToWindow(string windowName)
+        {
+            try
+            {
+                AutomationElement aeDesktop = null;
+                aeDesktop = AutomationElement.RootElement;
+                if (aeDesktop == null)
+                {
+                    throw new Exception("Unable to get Desktop");
+                }
+
+                this.m_MainWindow = null;
+                int numWaits = 0;
+                do
+                {
+                    this.m_MainWindow = aeDesktop.FindFirst(TreeScope.Children, new PropertyCondition(AutomationElement.NameProperty, windowName));
+                    numWaits++;
+                    Thread.Sleep(200);
+                }
+                while (this.m_MainWindow == null && numWaits < 50);
+
+                if (this.m_MainWindow == null)
+                {
+                    throw new Exception("Failed to find window");
+                }
+
+
+                AutomationProperty[] captureProperties = new AutomationProperty[]
+                {
+                    ValuePattern.ValueProperty,
+                    TogglePattern.ToggleStateProperty,
+                    SelectionPattern.SelectionProperty,
+                    SelectionItemPattern.IsSelectedProperty,
+                };
+
+                Automation.AddAutomationPropertyChangedEventHandler(this.m_MainWindow, TreeScope.Subtree, this.OnPropertyChanged, captureProperties);
+                Automation.AddAutomationEventHandler(SelectionPattern.InvalidatedEvent, this.m_MainWindow, TreeScope.Subtree, this.OnEvent);
+                Automation.AddAutomationEventHandler(InvokePattern.InvokedEvent, this.m_MainWindow, TreeScope.Subtree, this.OnEvent);
+                Automation.AddAutomationEventHandler(SelectionItemPattern.ElementSelectedEvent, this.m_MainWindow, TreeScope.Subtree, this.OnEvent);
+
+                this.Text += $" (now attached to: ({windowName})";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        #endregion
+
+        #region Event handlers
+
+        private void M_Activities_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.Invoke(new Action(() => this.m_Binder.ResetBindings(false)));
+        }
+
+        private void btnAttach_Click(object sender, EventArgs e)
+        {
+            this.AttachToWindow(this.cbxWindow.SelectedValue.ToString());
+        }
+
+        private void M_AutoIdRefreshTimer_Tick(object sender, EventArgs e)
+        {
+            this.btnGenerateAutoIds.Text = $"Generate ({this.m_TimerTicksLeft})";
+            this.m_TimerTicksLeft--;
+
+            if (this.m_TimerTicksLeft == 0)
+            {
+                this.m_LocalClient.RequestGenerateIds();
+                this.m_TimerTicksLeft = 10;
+            }
+        }
+
         private void btnAddComment_Click(object sender, EventArgs e)
         {
             this.m_Activities.Add(new Activity()
@@ -281,5 +307,50 @@ namespace SemiAutomatic
             this.m_LocalClient.RequestGenerateIds();
             this.m_TimerTicksLeft = 10;
         }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSettings dlg = new FormSettings();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                dlg.EditedConfiguration.Save(Configuration.DEFAULT_FILE);
+                this.Configuration = dlg.EditedConfiguration;
+            }
+        }
+
+        private void generateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IGenerator gen = null;
+            if(this.Configuration.Generator.Contains("C#")) //fucking stupid but works for now
+            {
+                gen = new SemiTestGenerator();
+            }
+            else
+            {
+                gen = new ReadableGenerator();
+            }
+
+            string result = gen.Generate(this.m_Activities.ToList());
+            new FormOutput(result).ShowDialog();
+        }
+
+        private void createMacroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(this.dgvActivities.SelectedRows.Count > 0)
+            {
+                List<Activity> selection = new List<Activity>();
+                this.dgvActivities.SelectedRows.Cast<DataGridViewRow>().ToList().ForEach((i) => selection.Add(i.DataBoundItem as Activity));
+
+
+                FormAddMacro dlg = new FormAddMacro(selection);
+                if(dlg.ShowDialog() == DialogResult.OK)
+                {
+                    this.Configuration.Macros.Add(dlg.EditedItem);
+                    this.Configuration.Save(Configuration.DEFAULT_FILE);
+                }
+            }
+        }
+
+        #endregion
     }
 }
