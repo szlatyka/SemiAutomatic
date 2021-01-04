@@ -9,6 +9,16 @@ namespace SemiAuto.CodeGeneration
 {
     public class SemiTestGenerator : IGenerator
     {
+        //Example on how it should work with common stuff:
+        //new Controls.Button("").Click();
+        //new Controls.CheckBox("").Check();
+        //new Controls.ComboBox("").SelectItem("");
+        //new Controls.ListBox("").SelectItem("");
+        //new Controls.ListView("").SelectItem("");
+        //new Controls.TextBox("").Value = "";
+        //new Controls.TreeView("").SelectItem("");
+        //new Controls.RadioButton("").Select();
+
         public List<Alias> Aliases { get; set; } = new List<Alias>();
         public List<Macro> Macros { get; set; } = new List<Macro>();
 
