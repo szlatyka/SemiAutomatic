@@ -11,3 +11,5 @@ src/CodeGeneration/obj
 src/CodeGeneration/bin
 src/SemiAuto.Data/obj
 src/SemiAuto.Data/bin
+src/SemiAutomatic/StyleCop.Cache
+src/Externals/SemiAuto.Externals.csproj.user

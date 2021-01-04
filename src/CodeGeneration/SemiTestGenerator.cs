@@ -38,9 +38,9 @@ namespace SemiAuto.CodeGeneration
 
                     for(int j = 0; j < macro.Steps.Count; j++)
                     {
-                        if(activities[i].Type != macro.Steps[j].Type ||
-                            activities[i].ControlType != macro.Steps[j].ControlType ||
-                            activities[i].WPath != macro.Steps[j].WPath)
+                        if(activities[i + j].Type != macro.Steps[j].Type ||
+                            activities[i + j].ControlType != macro.Steps[j].ControlType ||
+                            activities[i + j].WPath != macro.Steps[j].WPath)
                         {
                             match = false; break;
                         }
@@ -65,19 +65,41 @@ namespace SemiAuto.CodeGeneration
             }
 
 
-            foreach(Activity activity in activities)
+            foreach(Activity activity in macroEnabledActivities)
             {
                 switch(activity.Type)
                 {
                     case Activity.Types.Click:
+                        builder.AppendLine($"new Controls.{activity.ControlType}(\"{this.GetWPath(activity)}\").{activity.Type}();");
+                        break;
                     case Activity.Types.Toggle:
-                        string id = activity.WPath;
-                        Alias alias = this.Aliases.FirstOrDefault(a => a.OriginalID == id);
-                        if (alias != null)
+                        if(activity.ControlType == "CheckBox")
                         {
-                            id = alias.Substitution;
+                            builder.AppendLine($"new Controls.{activity.ControlType}(\"{this.GetWPath(activity)}\").Check();");
                         }
-                        builder.AppendLine($"new {activity.ControlType}(\"{id}\").{activity.Type}()");
+                        break;
+                    case Activity.Types.SelectionChange:
+                        if (activity.ControlType == "RadioButton")
+                        {
+                            builder.AppendLine($"new Controls.{activity.ControlType}(\"{this.GetWPath(activity)}\").Select();");
+                        }
+                        else if(activity.ControlType != "ComboBox")
+                        {
+                            builder.AppendLine($"new Controls.{activity.ControlType}(\"{this.GetWPath(activity)}\").SelectItem(\"{activity.Value}\");");
+                        }
+                        break;
+                    case Activity.Types.ValueChange:
+                        if (activity.ControlType == "ComboBox")
+                        {
+                            builder.AppendLine($"new Controls.{activity.ControlType}(\"{this.GetWPath(activity)}\").SelectItem(\"{activity.Value}\");");
+                        }
+                        else
+                        {
+                            builder.AppendLine($"new Controls.{activity.ControlType}(\"{this.GetWPath(activity)}\").Value = \"{activity.Value}\";");
+                        }
+                        break;
+                    case Activity.Types.Macro:
+                        builder.AppendLine(activity.Value.ToString());
                         break;
                     case Activity.Types.Comment:
                         builder.AppendLine($"//{activity.Value}");
@@ -85,7 +107,18 @@ namespace SemiAuto.CodeGeneration
                 }
             }
 
-            return null;
+            return builder.ToString();
+        }
+
+        private string GetWPath(Activity activity)
+        {
+            string id = activity.WPath;
+            Alias alias = this.Aliases.FirstOrDefault(a => a.OriginalID == id);
+            if (alias != null)
+            {
+                id = alias.Substitution;
+            }
+            return id;
         }
     }
 }

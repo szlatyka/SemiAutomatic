@@ -12,6 +12,9 @@ namespace SemiAuto.Data
         public string Name { get; set; }
         public bool Enabled { get; set; }
         public List<Activity> Steps { get; set; }
-        public Activity Replacement { get; set; }
+        public Activity Replacement { get; set; } = new Activity()
+        {
+            Type = Activity.Types.Macro
+        };
     }
 }
