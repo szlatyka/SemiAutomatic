@@ -34,6 +34,8 @@
             this.gpxControls = new System.Windows.Forms.GroupBox();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.dgvActivities = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.createMacroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAddComment = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbxCommentText = new System.Windows.Forms.TextBox();
@@ -46,15 +48,13 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.createMacroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gpxControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvActivities)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupbox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAttach
@@ -118,6 +118,20 @@
             this.dgvActivities.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvActivities.Size = new System.Drawing.Size(904, 358);
             this.dgvActivities.TabIndex = 4;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createMacroToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 26);
+            // 
+            // createMacroToolStripMenuItem
+            // 
+            this.createMacroToolStripMenuItem.Name = "createMacroToolStripMenuItem";
+            this.createMacroToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.createMacroToolStripMenuItem.Text = "Create macro...";
+            this.createMacroToolStripMenuItem.Click += new System.EventHandler(this.createMacroToolStripMenuItem_Click);
             // 
             // btnAddComment
             // 
@@ -234,20 +248,6 @@
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createMacroToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
-            // 
-            // createMacroToolStripMenuItem
-            // 
-            this.createMacroToolStripMenuItem.Name = "createMacroToolStripMenuItem";
-            this.createMacroToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.createMacroToolStripMenuItem.Text = "Create macro...";
-            this.createMacroToolStripMenuItem.Click += new System.EventHandler(this.createMacroToolStripMenuItem_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,17 +259,17 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
-            this.Text = "UiHooker";
+            this.Text = "SemiAuto";
             this.Load += new System.EventHandler(this.OnLoad);
             this.gpxControls.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvActivities)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.groupbox2.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

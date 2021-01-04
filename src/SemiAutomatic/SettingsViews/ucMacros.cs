@@ -47,5 +47,16 @@ namespace SemiAuto.SettingsViews
         {
             this.ucMacroView1.DataSource = this.lbxMacros.SelectedItem as Macro;
         }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if(this.lbxMacros.SelectedItem != null)
+            {
+                int next = this.lbxMacros.SelectedIndex == 0 ? 0 : this.lbxMacros.SelectedIndex - 1;
+
+                this.m_Macros.Remove(this.lbxMacros.SelectedItem as Macro);
+                this.lbxMacros.SelectedIndex = next;
+            }
+        }
     }
 }

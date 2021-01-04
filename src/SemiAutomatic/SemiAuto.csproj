@@ -52,6 +52,7 @@
     <Reference Include="UIAutomationTypes" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\AliasStoreHandler.cs" />
     <Compile Include="Configurations\Configuration.cs" />
     <Compile Include="FormAddMacro.cs">
       <SubType>Form</SubType>
@@ -166,6 +167,10 @@
     <ProjectReference Include="..\Communicators\SemiAuto.Communicators.csproj">
       <Project>{A419484B-7B3F-4CE7-9122-BEB04703BD08}</Project>
       <Name>SemiAuto.Communicators</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Externals\SemiAuto.Externals.csproj">
+      <Project>{CBA016A1-FCAA-4F13-9B21-BEF8DF7AA341}</Project>
+      <Name>SemiAuto.Externals</Name>
     </ProjectReference>
     <ProjectReference Include="..\SemiAuto.Data\SemiAuto.Data.csproj">
       <Project>{723b02f4-e721-4c77-990b-efa4c35a8b0d}</Project>

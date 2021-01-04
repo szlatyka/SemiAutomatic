@@ -16,6 +16,7 @@ using System.IO;
 using SemiAuto.Data;
 using SemiAuto.Communicators;
 using SemiAuto.CodeGeneration;
+using Machines.Common.AutomationId_Dictionaries;
 
 namespace SemiAuto
 {
@@ -45,6 +46,9 @@ namespace SemiAuto
                 new Configuration().Save(Configuration.DEFAULT_FILE);
             }
             this.Configuration = Configuration.Load(Configuration.DEFAULT_FILE);
+
+            AliasStoreHandler.AutoFillFromStore(this.Configuration.Aliases, typeof(PLS3000));
+            this.Configuration.Save(Configuration.DEFAULT_FILE);
         }
 
         private void OnPropertyChanged(object src, AutomationPropertyChangedEventArgs e)
@@ -97,7 +101,7 @@ namespace SemiAuto
                     WPath = this.GetWPath(this.GetAncestorWalk(el)),
                     Value = e.NewValue
                 };
-
+                this.m_Activities.Add(act);
             }
         }
 
@@ -198,21 +202,25 @@ namespace SemiAuto
 
         public string GetText(AutomationElement element)
         {
-            object patternObj;
-            if (element.TryGetCurrentPattern(ValuePattern.Pattern, out patternObj))
+            if (element != null)
             {
-                var valuePattern = (ValuePattern)patternObj;
-                return valuePattern.Current.Value;
+                object patternObj;
+                if (element.TryGetCurrentPattern(ValuePattern.Pattern, out patternObj))
+                {
+                    var valuePattern = (ValuePattern)patternObj;
+                    return valuePattern.Current.Value;
+                }
+                else if (element.TryGetCurrentPattern(TextPattern.Pattern, out patternObj))
+                {
+                    var textPattern = (TextPattern)patternObj;
+                    return textPattern.DocumentRange.GetText(-1).TrimEnd('\r'); // often there is an extra '\r' hanging off the end.
+                }
+                else
+                {
+                    return element.Current.Name;
+                }
             }
-            else if (element.TryGetCurrentPattern(TextPattern.Pattern, out patternObj))
-            {
-                var textPattern = (TextPattern)patternObj;
-                return textPattern.DocumentRange.GetText(-1).TrimEnd('\r'); // often there is an extra '\r' hanging off the end.
-            }
-            else
-            {
-                return element.Current.Name;
-            }
+            return null;
         }
 
         public void AttachToWindow(string windowName)
@@ -344,7 +352,7 @@ namespace SemiAuto
             if(this.dgvActivities.SelectedRows.Count > 0)
             {
                 List<Activity> selection = new List<Activity>();
-                this.dgvActivities.SelectedRows.Cast<DataGridViewRow>().ToList().ForEach((i) => selection.Add(i.DataBoundItem as Activity));
+                this.dgvActivities.SelectedRows.Cast<DataGridViewRow>().OrderBy(r => r.Index).ToList().ForEach((i) => selection.Add(i.DataBoundItem as Activity));
 
 
                 FormAddMacro dlg = new FormAddMacro(selection);

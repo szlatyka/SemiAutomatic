@@ -42,11 +42,13 @@
             this.tbxSubstitute.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbxSubstitute.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tbxSubstitute.Location = new System.Drawing.Point(3, 234);
             this.tbxSubstitute.Multiline = true;
             this.tbxSubstitute.Name = "tbxSubstitute";
             this.tbxSubstitute.Size = new System.Drawing.Size(982, 191);
             this.tbxSubstitute.TabIndex = 8;
+            this.tbxSubstitute.TextChanged += new System.EventHandler(this.tbxSubstitute_TextChanged);
             // 
             // label2
             // 
@@ -68,12 +70,16 @@
             // 
             // dgvSteps
             // 
+            this.dgvSteps.AllowUserToAddRows = false;
+            this.dgvSteps.AllowUserToDeleteRows = false;
             this.dgvSteps.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvSteps.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSteps.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSteps.Location = new System.Drawing.Point(3, 53);
             this.dgvSteps.Name = "dgvSteps";
+            this.dgvSteps.ReadOnly = true;
+            this.dgvSteps.RowHeadersVisible = false;
             this.dgvSteps.Size = new System.Drawing.Size(982, 150);
             this.dgvSteps.TabIndex = 5;
             // 
@@ -83,6 +89,7 @@
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(268, 20);
             this.tbxName.TabIndex = 9;
+            this.tbxName.TextChanged += new System.EventHandler(this.tbxName_TextChanged);
             // 
             // label3
             // 

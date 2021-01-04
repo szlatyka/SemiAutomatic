@@ -20,13 +20,19 @@ namespace SemiAuto.SettingsViews
 
         public override void OnInit()
         {
-            this.tbxName.DataBindings.Clear();
-            this.tbxName.DataBindings.Add(new Binding(nameof(this.tbxSubstitute.Text), this.DataSource, nameof(this.DataSource.Name), true, DataSourceUpdateMode.OnValidation));
-
-            this.tbxSubstitute.DataBindings.Clear();
-            this.tbxSubstitute.DataBindings.Add(new Binding(nameof(this.tbxSubstitute.Text), this.DataSource, nameof(this.DataSource.Replacement), true, DataSourceUpdateMode.OnValidation));
-
+            this.tbxName.Text = this.DataSource.Name;
+            this.tbxSubstitute.Text = this.DataSource.Replacement.Value?.ToString();
             this.dgvSteps.DataSource = this.DataSource.Steps;
+        }
+
+        private void tbxName_TextChanged(object sender, EventArgs e)
+        {
+            this.DataSource.Name = this.tbxName.Text;
+        }
+
+        private void tbxSubstitute_TextChanged(object sender, EventArgs e)
+        {
+            this.DataSource.Replacement.Value = this.tbxSubstitute.Text;
         }
     }
 }

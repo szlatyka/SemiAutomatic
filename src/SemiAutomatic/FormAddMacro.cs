@@ -28,6 +28,10 @@ namespace SemiAuto
             {
                 Steps = activities,
                 Name = "macro",
+                Replacement = new Activity()
+                {
+                    Type = Activity.Types.Macro,
+                }
             };
         }
     }
