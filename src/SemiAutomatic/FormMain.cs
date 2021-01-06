@@ -194,8 +194,9 @@ namespace SemiAuto
 
         private string GetWPath(List<AutomationElement> walk)
         {
-            walk.Reverse();
-            string auto = String.Join(".", walk.Select(ae => ae.Current.AutomationId).ToArray());
+            //walk.Reverse();
+            //string auto = String.Join(".", walk.Select(ae => ae.Current.AutomationId).ToArray());
+            string auto = walk.First().Current.AutomationId;
 
             return auto;
         }

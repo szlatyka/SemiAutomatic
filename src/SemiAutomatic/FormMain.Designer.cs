@@ -116,7 +116,7 @@
             this.dgvActivities.Name = "dgvActivities";
             this.dgvActivities.RowHeadersVisible = false;
             this.dgvActivities.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvActivities.Size = new System.Drawing.Size(904, 358);
+            this.dgvActivities.Size = new System.Drawing.Size(904, 303);
             this.dgvActivities.TabIndex = 4;
             // 
             // contextMenuStrip1
@@ -253,8 +253,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 434);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvActivities);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.gpxControls);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
