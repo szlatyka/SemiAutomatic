@@ -48,6 +48,14 @@
 
             </StackPanel>
         </GroupBox>
+        <TabControl HorizontalAlignment="Left" Height="100" Margin="491,120,0,0" VerticalAlignment="Top" Width="166" Name="taaaab">
+            <TabItem Header="TabItem 1">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="TabItem 2">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>

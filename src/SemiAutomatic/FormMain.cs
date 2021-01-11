@@ -93,15 +93,53 @@ namespace SemiAuto
                 bool selected = typedPattern.Current.IsSelected;
                 AutomationElement container = typedPattern.Current.SelectionContainer;
 
-                Activity act = new Activity()
+                Activity act = null;
+
+                if (container != null)
                 {
-                    Type = Activity.Types.SelectionChange,
-                    ControlDisplayText = this.GetText(container),
-                    ControlType = itemType,
-                    WPath = this.GetWPath(this.GetAncestorWalk(el)),
-                    Value = e.NewValue
-                };
-                this.m_Activities.Add(act);
+                    var t = container.Current.ClassName;
+                    var s = container.Current.ControlType;
+
+                    switch(t)
+                    {
+                        case "ListBox":
+                        case "TabControl":
+                            if((bool)e.NewValue == true)
+                            {
+                                act = new Activity()
+                                {
+                                    Type = Activity.Types.SelectionChange,
+                                    ControlDisplayText = this.GetText(container),
+                                    ControlType = t, //todo containertype
+                                    WPath = this.GetWPath(this.GetAncestorWalk(el)),
+                                    Value = name
+                                };
+                            }
+                            break;
+                        case "ComboBox":
+                            //ignore, case is handled in valuechange!
+                            break;
+                    }
+                }
+                else if(itemType == "RadioButton")
+                {
+                    if ((bool)e.NewValue == true)
+                    {
+                        act = new Activity()
+                        {
+                            Type = Activity.Types.SelectionChange,
+                            ControlDisplayText = this.GetText(el),
+                            ControlType = itemType,
+                            WPath = this.GetWPath(this.GetAncestorWalk(el)),
+                            Value = name
+                        };
+                    }
+                }
+
+                if(act != null)
+                {
+                    this.m_Activities.Add(act);
+                }
             }
         }
 
@@ -278,7 +316,11 @@ namespace SemiAuto
 
         private void M_Activities_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.Invoke(new Action(() => this.m_Binder.ResetBindings(false)));
+            this.Invoke(new Action(() =>
+            {
+                this.m_Binder.ResetBindings(false);
+                this.dgvActivities.FirstDisplayedScrollingRowIndex = this.dgvActivities.RowCount - 1;
+            }));
         }
 
         private void btnAttach_Click(object sender, EventArgs e)

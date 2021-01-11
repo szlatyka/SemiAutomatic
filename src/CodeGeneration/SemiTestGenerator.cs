@@ -70,32 +70,32 @@ namespace SemiAuto.CodeGeneration
                 switch(activity.Type)
                 {
                     case Activity.Types.Click:
-                        builder.AppendLine($"new Controls.{activity.ControlType}(\"{this.GetWPath(activity)}\").{activity.Type}();");
+                        builder.AppendLine($"new Controls.{activity.ControlType}({this.GetWPath(activity)}).{activity.Type}();");
                         break;
                     case Activity.Types.Toggle:
                         if(activity.ControlType == "CheckBox")
                         {
-                            builder.AppendLine($"new Controls.{activity.ControlType}(\"{this.GetWPath(activity)}\").Check();");
+                            builder.AppendLine($"new Controls.{activity.ControlType}({this.GetWPath(activity)}).Check();");
                         }
                         break;
                     case Activity.Types.SelectionChange:
                         if (activity.ControlType == "RadioButton")
                         {
-                            builder.AppendLine($"new Controls.{activity.ControlType}(\"{this.GetWPath(activity)}\").Select();");
+                            builder.AppendLine($"new Controls.{activity.ControlType}({this.GetWPath(activity)}).Select();");
                         }
                         else if(activity.ControlType != "ComboBox")
                         {
-                            builder.AppendLine($"new Controls.{activity.ControlType}(\"{this.GetWPath(activity)}\").SelectItem(\"{activity.Value}\");");
+                            builder.AppendLine($"new Controls.{activity.ControlType}({this.GetWPath(activity)}).SelectItem(\"{activity.Value}\");");
                         }
                         break;
                     case Activity.Types.ValueChange:
                         if (activity.ControlType == "ComboBox")
                         {
-                            builder.AppendLine($"new Controls.{activity.ControlType}(\"{this.GetWPath(activity)}\").SelectItem(\"{activity.Value}\");");
+                            builder.AppendLine($"new Controls.{activity.ControlType}({this.GetWPath(activity)}).SelectItem(\"{activity.Value}\");");
                         }
                         else
                         {
-                            builder.AppendLine($"new Controls.{activity.ControlType}(\"{this.GetWPath(activity)}\").Value = \"{activity.Value}\";");
+                            builder.AppendLine($"new Controls.{activity.ControlType}({this.GetWPath(activity)}).Value = \"{activity.Value}\";");
                         }
                         break;
                     case Activity.Types.Macro:
@@ -116,9 +116,12 @@ namespace SemiAuto.CodeGeneration
             Alias alias = this.Aliases.FirstOrDefault(a => a.OriginalID == id);
             if (alias != null)
             {
-                id = alias.Substitution;
+                return alias.Substitution;
             }
-            return id;
+            else
+            {
+                return $"\"{id}\"";
+            }
         }
     }
 }
